@@ -1,5 +1,5 @@
 import speech_recognition as sr  
-from googletrans import Translator 
+import os
 
 def Listen():
     r = sr.Recognizer()
@@ -17,23 +17,18 @@ def Listen():
         return ""    #kuch input nhi mila toh returns null
     
     query = str(query).lower()
+    print(query)
     return query
 
-Listen()
-
-print(Listen())
-
-def TraslationHintoEng(Text):
-    line = str(Text)
-    translate = Translator()
-    result = translate.translate(line)
-    data = result.text
-    print(F"You: {data}.")
-    return data
-
-def MicExecution():
-    query = Listen()
-    data = TraslationHintoEng(query)
-    return data
-
-MicExecution()
+def WakeupDetected():
+    queery = Listen().lower()
+    
+    if "wake up" in queery:
+        
+        os.startfile(r"C:\Users\preet\OneDrive\Desktop\Float\tp.py")
+        
+    else:
+        pass
+    
+while True:
+    WakeupDetected()
