@@ -19,7 +19,6 @@ from email.mime.base import MIMEBase
 from email import encoders
 import os.path
 
-
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices');
 # print(voices[0].id)
@@ -30,7 +29,6 @@ def speak(audio):
     engine.say(audio)
     print(audio)
     engine.runAndWait()
-
 
 #To convert voice into text
 def  takecommand():
@@ -61,7 +59,7 @@ def wish():
         speak(f"good afternoon, its {tt}")
     else:
         speak(f"good evening, its {tt}")
-    speak("i am jarvis sir. please tell me how may i help you")
+    speak("i am Float  sir. please tell me how may i help you")
 
 """    
 #to send email
@@ -165,7 +163,7 @@ if __name__ == "__main__": #main program
             
         elif 'timer' in query or 'stopwatch' in query:
             speak("For how many minutes?")
-            timing = takeCommand()
+            timing = takecommand()
             timing =timing.replace('minutes', '')
             timing = timing.replace('minute', '')
             timing = timing.replace('for', '')
@@ -181,7 +179,7 @@ if __name__ == "__main__": #main program
                 speak("what should i say?")
                 content = takecommand().lower()
                 to = "EMAIL OF THE OTHER PERSON"
-                sendEmail(to,content)
+                send_to_email(to,content)
                 speak("Email has been sent to avinash")
             except Exception as e:
                 print(e)
@@ -222,13 +220,6 @@ if __name__ == "__main__": #main program
         elif "sleep the system" in query:
             os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
 
-
-
-###########################################################################################################################################
-###########################################################################################################################################
-
-
-
         elif 'switch the window' in query:
             pyautogui.keyDown("alt")
             pyautogui.press("tab")
@@ -267,7 +258,7 @@ if __name__ == "__main__": #main program
 
                 msg.attach(MIMEText(message, 'plain'))
 
-                # Setup the attachment
+                # Set up the attachment
                 filename = os.path.basename(file_location)
                 attachment = open(file_location, "rb")
                 part = MIMEBase('application', 'octet-stream')
