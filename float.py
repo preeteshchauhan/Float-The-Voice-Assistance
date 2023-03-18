@@ -59,7 +59,7 @@ def wish():
         speak(f"good afternoon, its {tt}")
     else:
         speak(f"good evening, its {tt}")
-    speak("i am  sir. please tell me how may i help you")
+    speak("i am Float  sir. please tell me how may i help you")
 
 """    
 #to send email
