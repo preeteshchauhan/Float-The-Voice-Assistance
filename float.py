@@ -298,6 +298,5 @@ if __name__ == "__main__": #main program
                 server.sendmail(email, send_to_email , message) # Send the email
                 server.quit() # Logout of the email server
                 speak("email has been sent to avinash")
-            
-
+        
         # speak("sir, do you have any other work")
