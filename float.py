@@ -30,7 +30,6 @@ def speak(audio):
     print(audio)
     engine.runAndWait()
 
-
 #To convert voice into text
 def  takecommand():
     r = sr.Recognizer()
