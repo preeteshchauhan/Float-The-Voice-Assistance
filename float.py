@@ -117,6 +117,16 @@ if __name__ == '__main__': #main program
                     print(results)
                     speak(results)
 
+
+                elif "take a screenshot" in query:
+                    # Get the screen dimensions
+                    screen_width, screen_height = pyautogui.size()
+                    # Capture the screen and save it as a PNG file
+                    screenshot = pyautogui.screenshot()
+                    screenshot.save("screenshot.png")
+                    # Speak the confirmation
+                    speak("Screenshot saved as screenshot.png.")
+
                 elif "open notepad" in query:
                     npath = "C:\\Windows\\system32\\notepad.exe"
                     os.startfile(npath)
