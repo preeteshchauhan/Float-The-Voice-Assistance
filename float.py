@@ -189,6 +189,10 @@ if __name__ == '__main__': #main program
                     str_time = datetime.datetime.now().strftime("%H:%M:%S")
                     speak(f"The time is {str_time}")
 
+                elif 'what is the date' in query:
+                    date = datetime.datetime.now().strftime("%B %d, %Y")
+                    speak(f"Today is {date}")
+
                 elif "stop" in query:
                     speak("Okay! You can call me anytime...")
                     break
