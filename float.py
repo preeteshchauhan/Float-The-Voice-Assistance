@@ -2,6 +2,7 @@ import pyttsx3
 import speech_recognition as sr
 import datetime
 import os
+import json
 import random
 from requests import get
 import wikipedia
@@ -86,7 +87,7 @@ def wake_up():
 
 #for news updates
 def news():
-    main_url = 'http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey="YOUR_API_HERE"'
+    main_url = 'http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey="093d6c17a5ef4ace899a09a3ebe7109f"'
 
     main_page = requests.get(main_url).json()
     # print(main_page)
@@ -231,7 +232,11 @@ if __name__ == '__main__': #main program
                     time.sleep(1)
                     pyautogui.keyUp("alt")
                    
-
+                elif 'news' in query:
+                    from newsread import latestnews
+                    latestnews()
+                    
+                    
                 elif "tell me news" in query:
                     speak("please wait sir, feteching the latest news")
                     news()
@@ -297,4 +302,26 @@ if __name__ == '__main__': #main program
                 # speak("sir, do you have any other work")
 
 
+def get_news():
+    api_key = "093d6c17a5ef4ace899a09a3ebe7109f"
+    url = f"https://newsapi.org/v2/top-headlines?country=in&apiKey={api_key}"
+    response = requests.get(url)
+    news_data = json.loads(response.text)
+    articles = news_data["articles"]
+    news_list = []
+    for article in articles:
+        news_list.append(article["title"])
+    return news_list
+
+def tell_news():
+    news_list = get_news()
+    if len(news_list) > 0:
+        speak("Here are the top headlines for today in India:")
+        for news in news_list:
+            speak(news)
+    else:
+        speak("Sorry, I couldn't find any news headlines for today in India.")
+
+if __name__ == "__main__":
+    tell_news()
                 
