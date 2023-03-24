@@ -14,11 +14,14 @@ import time
 import pyjokes
 import requests
 import pyautogui
+import os.path
+from bs4 import BeautifulSoup
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-import os.path
+from Calculatenumbers import WolfRamAlpha
+from Calculatenumbers import Calc
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -200,7 +203,7 @@ if __name__ == '__main__': #main program
                     str_time = datetime.datetime.now().strftime("%H:%M:%S")
                     speak(f"The time is {str_time}")
 
-                elif 'what is the date' in query:
+                elif 'date' in query:
                     date = datetime.datetime.now().strftime("%B %d, %Y")
                     speak(f"Today is {date}")
 
@@ -226,10 +229,31 @@ if __name__ == '__main__': #main program
                 elif "tell me a joke" in query:
                     joke = pyjokes.get_joke()
                     speak(joke)
+                    
+                elif "calculate" in query:
+                    from Calculatenumbers import WolfRamAlpha
+                    from Calculatenumbers import Calc    
+                    query = query.replace("calculate","")
+                    query = query.replace("jarvis","")
+                    Calc(query)
 
-                elif "shut down the system" in query:
-                    os.system("shutdown /s /t 5")
 
+                elif "shutdown the system" in query:
+                    speak("Are You sure you want to shutdown")
+                    shutdown = take_command()
+                    if shutdown == "yes":
+                        os.system("shutdown /s /t 5")
+                    elif shutdown == "no":  
+                        break
+                    
+                elif "temperature" in query:
+                    search = "temperature in Mumbai"
+                    url = f"https://www.google.com/search?q={search}"
+                    r  = requests.get(url)
+                    data = BeautifulSoup(r.text,"html.parser")
+                    temp = data.find("div", class_ = "BNeawe").text
+                    speak(f"current {search} is {temp}")
+                    
                 elif "restart the system" in query:
                     os.system("shutdown /r /t 5")
 
@@ -270,7 +294,8 @@ if __name__ == '__main__': #main program
                 elif "tell me news" in query:
                     speak("please wait sir, feteching the latest news")
                     news()
-
+                    
+                
                 elif "email to avinash" in query:
                
                     speak("sir what should i say")
