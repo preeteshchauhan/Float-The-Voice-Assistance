@@ -126,10 +126,16 @@ if __name__ == '__main__': #main program
                     # Get the screen dimensions
                     screen_width, screen_height = pyautogui.size()
                     # Capture the screen and save it as a PNG file
-                    screenshot = pyautogui.screenshot()
-                    screenshot.save("screenshot.png")
+                    # screenshot = pyautogui.screenshot()
+                    now = datetime.datetime.now()
+                    timestamp = now.strftime("%Y-%m-%d %H-%M-%S")
+                    # screenshot.save("screenshot.png")
                     # Speak the confirmation
-                    speak("Screenshot saved as screenshot.png.")
+                    filename = f"{timestamp}.png"
+                    screenshot = pyautogui.screenshot()
+                    screenshot.save(filename)
+                    speak(f"Screenshot saved as {filename}")
+                    # speak("Screenshot saved as screenshot.png.")
 
                 elif "open notepad" in query:
                     npath = "C:\\Windows\\system32\\notepad.exe"
