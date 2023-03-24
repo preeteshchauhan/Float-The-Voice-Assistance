@@ -49,7 +49,7 @@ def take_command():
     with sr.Microphone() as source:
         print("Listening...")
         r.pause_threshold = 1
-        audio = r.listen(source,timeout=5,phrase_time_limit=8)
+        audio = r.listen(source)
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language='en-in')

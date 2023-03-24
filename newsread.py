@@ -16,7 +16,7 @@ def speak(audio):
 def latestnews():
     api_dict = {"business" : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
             "entertainment" : "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
-            "health" : "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=#here paste your api keyhttps://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
+            "health" : "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
             "science" :"https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
             "sports" :"https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
             "technology" :"https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=093d6c17a5ef4ace899a09a3ebe7109f"
