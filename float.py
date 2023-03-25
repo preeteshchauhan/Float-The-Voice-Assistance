@@ -113,13 +113,39 @@ if __name__ == '__main__': #main program
             while True:
                 query = take_command().lower()
 
-                if 'wikipedia' in query:
-                    speak('Searching Wikipedia...')
-                    query = query.replace("wikipedia", "")
-                    results = wikipedia.summary(query, sentences=2)
-                    speak("According to Wikipedia")
-                    print(results)
+                if "wikipedia" in query:
+                    speak("Searching from wikipedia....")
+                    query = query.replace("wikipedia","")
+                    query = query.replace("search wikipedia","")
+                    query = query.replace("float","")
+                    results = wikipedia.summary(query,sentences = 2)
+                    speak("According to wikipedia..")
                     speak(results)
+
+                elif "youtube" in query:
+                    speak("This is what I found for your search!") 
+                    query = query.replace("youtube search","")
+                    query = query.replace("youtube","")
+                    query = query.replace("float","")
+                    web  = "https://www.youtube.com/results?search_query=" + query
+                    webbrowser.open(web)
+                    kit.playonyt(query)
+                    speak("Done, Sir")
+
+                elif "google" in query:
+                    import wikipedia as googleScrap
+                    query = query.replace("float","")
+                    query = query.replace("google search","")
+                    query = query.replace("google","")
+                    speak("This is what I found on google")
+
+                    try:
+                        kit.search(query)
+                        result = googleScrap.summary(query,2)
+                        speak(result)
+
+                    except:
+                        speak("No speakable output available")
 
 
                 elif "take a screenshot" in query:
@@ -151,8 +177,8 @@ if __name__ == '__main__': #main program
                 elif "open command prompt" in query:
                     os.system("start cmd")
 
-                elif 'open youtube' in query:
-                    webbrowser.open("youtube.com")
+                # elif 'open youtube' in query:
+                #     webbrowser.open("youtube.com")
 
                 elif "open facebook" in query:
                     webbrowser.open("www.facebook.com")
@@ -192,10 +218,10 @@ if __name__ == '__main__': #main program
                         print(e)
                         speak("sorry sir, i am not able to sent this mail to avi")
 
-                elif "open google" in query:
-                    speak("sir, what should i search on google")
-                    cm = take_command().lower()
-                    webbrowser.open(f"{cm}")
+                # elif "open google" in query:
+                #     speak("sir, what should i search on google")
+                #     cm = take_command().lower()
+                #     webbrowser.open(f"{cm}")
 
                 elif "play music" in query:
                     music_dir = "E:\\music"
