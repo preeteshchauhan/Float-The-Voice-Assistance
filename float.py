@@ -414,3 +414,5 @@ def tell_news():
     else:
         speak("Sorry, I couldn't find any news headlines for today in India.")
 
+if __name__ == "__main__":
+    tell_news()
