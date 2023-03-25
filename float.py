@@ -22,11 +22,9 @@ from email.mime.base import MIMEBase
 from email import encoders
 from Calculatenumbers import WolfRamAlpha
 from Calculatenumbers import Calc
-from keyboard import press
-from keyboard import write
-from pyautogui import click, sleep
-from keyboard import press_and_release
-import webbrowser as web
+
+
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -127,30 +125,61 @@ if __name__ == '__main__': #main program
                     speak("According to wikipedia..")
                     speak(results)
 
-                elif "youtube" in query:
-                    speak("This is what I found for your search!") 
-                    query = query.replace("youtube search","")
-                    query = query.replace("youtube","")
-                    query = query.replace("float","")
-                    web  = "https://www.youtube.com/results?search_query=" + query
-                    webbrowser.open(web)
-                    kit.playonyt(query)
-                    speak("Done, Sir")
-
                 elif "google" in query:
-                    import wikipedia as googleScrap
-                    query = query.replace("float","")
-                    query = query.replace("google search","")
-                    query = query.replace("google","")
-                    speak("This is what I found on google")
+                    from SearchNow import searchGoogle
+                    searchGoogle(query)
+                elif "youtube" in query:
+                    from SearchNow import searchYoutube
+                    searchYoutube(query)
 
-                    try:
-                        kit.search(query)
-                        result = googleScrap.summary(query,2)
-                        speak(result)
+                elif "pause" in query or "break" in query:
+                    pyautogui.press("k")
+                    speak("video paused")
+                elif "play" in query:
+                    pyautogui.press("k")
+                    speak("video played")
+                elif "mute" in query:
+                    pyautogui.press("m")
+                    speak("video muted")
+                elif "unmute" in query:
+                    pyautogui.press("m")
+                    speak("video unmuted")
 
-                    except:
-                        speak("No speakable output available")
+
+                elif "volume up" in query:
+                    from keyboard import volumeup
+                    speak("Turning volume up,sir")
+                    volumeup()
+                elif "volume down" in query:
+                    from keyboard import volumedown
+                    speak("Turning volume down, sir")
+                    volumedown()
+                
+
+                # elif "youtube" in query:
+                #     speak("This is what I found for your search!") 
+                #     query = query.replace("youtube search","")
+                #     query = query.replace("youtube","")
+                #     query = query.replace("float","")
+                #     web  = "https://www.youtube.com/results?search_query=" + query
+                #     webbrowser.open(web)
+                #     kit.playonyt(query)
+                #     speak("Done, Sir")
+
+                # elif "google" in query:
+                #     import wikipedia as googleScrap
+                #     query = query.replace("float","")
+                #     query = query.replace("google search","")
+                #     query = query.replace("google","")
+                #     speak("This is what I found on google")
+
+                #     try:
+                #         kit.search(query)
+                #         result = googleScrap.summary(query,2)
+                #         speak(result)
+
+                #     except:
+                #         speak("No speakable output available")
 
 
                 elif "take a screenshot" in query:
