@@ -144,6 +144,20 @@ if __name__ == '__main__': #main program
                 elif "unmute" in query:
                     pyautogui.press("m")
                     speak("video unmuted")
+                elif "full screen" in query or "end full screen" in query:
+                    pyautogui.press("f")
+                    speak("video full screened")
+                elif "film screen" in query or "theatre mode" in query:
+                    pyautogui.press("t")
+                    speak("video in theatre mode")
+                elif "skip" in query:
+                    pyautogui.press("l")
+                    speak("video skipped")
+                elif "back" in query:
+                    pyautogui.press("l")
+                    speak("going back")
+                
+                
 
 
                 elif "volume up" in query:
@@ -211,8 +225,8 @@ if __name__ == '__main__': #main program
                 elif "open command prompt" in query:
                     os.system("start cmd")
 
-                # elif 'open youtube' in query:
-                #     webbrowser.open("youtube.com")
+                elif 'open youtube' in query:
+                    webbrowser.open("youtube.com")
 
                 elif "open facebook" in query:
                     webbrowser.open("www.facebook.com")
@@ -225,8 +239,8 @@ if __name__ == '__main__': #main program
                     time.sleep(120)
                     speak("message has been sent")
 
-                elif "song on youtube" in query:
-                    kit.playonyt("see you again")
+                # elif "song on youtube" in query:
+                #     kit.playonyt("see you again")
 
                 elif 'timer' in query or 'stopwatch' in query:
                     speak("For how many minutes?")
