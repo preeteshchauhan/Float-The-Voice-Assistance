@@ -22,6 +22,11 @@ from email.mime.base import MIMEBase
 from email import encoders
 from Calculatenumbers import WolfRamAlpha
 from Calculatenumbers import Calc
+from keyboard import press
+from keyboard import write
+from pyautogui import click, sleep
+from keyboard import press_and_release
+import webbrowser as web
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -409,6 +414,3 @@ def tell_news():
     else:
         speak("Sorry, I couldn't find any news headlines for today in India.")
 
-if __name__ == "__main__":
-    tell_news()
-                
