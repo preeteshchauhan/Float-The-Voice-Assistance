@@ -20,8 +20,10 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from keyboard import press_and_release
 from Calculatenumbers import WolfRamAlpha
 from Calculatenumbers import Calc
+
 
 
 
@@ -143,7 +145,7 @@ if __name__ == '__main__': #main program
                     speak("video muted")
                 elif "unmute" in query:
                     pyautogui.press("m")
-                    speak("video unmuted")
+                    speak("video unmute")
                 elif "full screen" in query or "end full screen" in query:
                     pyautogui.press("f")
                     speak("video full screened")
@@ -152,20 +154,29 @@ if __name__ == '__main__': #main program
                     speak("video in theatre mode")
                 elif "skip" in query:
                     pyautogui.press("l")
-                    speak("video skipped")
+                    speak("moving 10 seconds ahead")
                 elif "back" in query:
-                    pyautogui.press("l")
-                    speak("going back")
-                
-                
-
+                    pyautogui.press("j")
+                    speak("moving 10 seconds back")
+                elif "next" in query:
+                    press_and_release('SHIFT + n')
+                    speak("skipping to next video ")
+                elif "previous" in query:
+                    press_and_release('SHIFT + p')
+                    speak("previous video played")
+                elif "increase speed" in query or "fast forward" in query:
+                    press_and_release("SHIFT + .")
+                    speak("fastforwarding the video")
+                elif "decrease speed" in query or "slow the video" in query: #currently giving error
+                    press_and_release("SHIFT + ,")
+                               
 
                 elif "volume up" in query:
-                    from keyboard import volumeup
+                    from keyboard1 import volumeup
                     speak("Turning volume up,sir")
                     volumeup()
                 elif "volume down" in query:
-                    from keyboard import volumedown
+                    from keyboard1 import volumedown
                     speak("Turning volume down, sir")
                     volumedown()
                 
@@ -421,7 +432,7 @@ if __name__ == '__main__': #main program
                         server.quit()
                         speak("email has been sent to avinash")
 
-                    else:                
+                    else: 
                         email = 'your@gmail.com' # Your email
                         password = 'your_pass' # Your email account password
                         send_to_email = 'To_person@gmail.com' # Whom you are sending the message to

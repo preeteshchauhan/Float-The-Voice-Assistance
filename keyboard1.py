@@ -1,6 +1,6 @@
 from pynput.keyboard import Key,Controller
-
 from time import sleep
+
 
 keyboard = Controller()
 
@@ -14,3 +14,5 @@ def volumedown():
         keyboard.press(Key.media_volume_down)
         keyboard.release(Key.media_volume_down)
         sleep(0.1)
+
+   
