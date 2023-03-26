@@ -20,6 +20,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from keyboard import press_and_release
 from Calculatenumbers import WolfRamAlpha
 from Calculatenumbers import Calc
 from keyboard import press
@@ -27,6 +28,10 @@ from keyboard import write
 from pyautogui import click, sleep
 from keyboard import press_and_release
 import webbrowser as web
+
+
+
+
 
 
 engine = pyttsx3.init('sapi5')
@@ -119,13 +124,93 @@ if __name__ == '__main__': #main program
             while True:
                 query = take_command().lower()
 
-                if 'wikipedia' in query:
-                    speak('Searching Wikipedia...')
-                    query = query.replace("wikipedia", "")
-                    results = wikipedia.summary(query, sentences=2)
-                    speak("According to Wikipedia")
-                    print(results)
+                if "wikipedia" in query:
+                    speak("Searching from wikipedia....")
+                    query = query.replace("wikipedia","")
+                    query = query.replace("search wikipedia","")
+                    query = query.replace("float","")
+                    results = wikipedia.summary(query,sentences = 2)
+                    speak("According to wikipedia..")
                     speak(results)
+
+                elif "google" in query:
+                    from SearchNow import searchGoogle
+                    searchGoogle(query)
+                elif "youtube" in query:
+                    from SearchNow import searchYoutube
+                    searchYoutube(query)
+
+                elif "pause" in query or "break" in query:
+                    pyautogui.press("k")
+                    speak("video paused")
+                elif "play" in query:
+                    pyautogui.press("k")
+                    speak("video played")
+                elif "mute" in query:
+                    pyautogui.press("m")
+                    speak("video muted")
+                elif "unmute" in query:
+                    pyautogui.press("m")
+                    speak("video unmute")
+                elif "full screen" in query or "end full screen" in query:
+                    pyautogui.press("f")
+                    speak("video full screened")
+                elif "film screen" in query or "theatre mode" in query:
+                    pyautogui.press("t")
+                    speak("video in theatre mode")
+                elif "skip" in query:
+                    pyautogui.press("l")
+                    speak("moving 10 seconds ahead")
+                elif "back" in query:
+                    pyautogui.press("j")
+                    speak("moving 10 seconds back")
+                elif "next" in query:
+                    press_and_release('SHIFT + n')
+                    speak("skipping to next video ")
+                elif "previous" in query:
+                    press_and_release('SHIFT + p')
+                    speak("previous video played")
+                elif "increase speed" in query or "fast forward" in query:
+                    press_and_release("SHIFT + .")
+                    speak("fastforwarding the video")
+                elif "decrease speed" in query or "slow the video" in query: #currently giving error
+                    press_and_release("SHIFT + ,")
+                               
+
+                elif "volume up" in query:
+                    from keyboard1 import volumeup
+                    speak("Turning volume up,sir")
+                    volumeup()
+                elif "volume down" in query:
+                    from keyboard1 import volumedown
+                    speak("Turning volume down, sir")
+                    volumedown()
+                
+
+                # elif "youtube" in query:
+                #     speak("This is what I found for your search!") 
+                #     query = query.replace("youtube search","")
+                #     query = query.replace("youtube","")
+                #     query = query.replace("float","")
+                #     web  = "https://www.youtube.com/results?search_query=" + query
+                #     webbrowser.open(web)
+                #     kit.playonyt(query)
+                #     speak("Done, Sir")
+
+                # elif "google" in query:
+                #     import wikipedia as googleScrap
+                #     query = query.replace("float","")
+                #     query = query.replace("google search","")
+                #     query = query.replace("google","")
+                #     speak("This is what I found on google")
+
+                #     try:
+                #         kit.search(query)
+                #         result = googleScrap.summary(query,2)
+                #         speak(result)
+
+                #     except:
+                #         speak("No speakable output available")
 
 
                 elif "take a screenshot" in query:
@@ -180,8 +265,8 @@ if __name__ == '__main__': #main program
                     time.sleep(120)
                     speak("message has been sent")
 
-                elif "song on youtube" in query:
-                    kit.playonyt("see you again")
+                # elif "song on youtube" in query:
+                #     kit.playonyt("see you again")
 
                 elif 'timer' in query or 'stopwatch' in query:
                     speak("For how many minutes?")
@@ -207,10 +292,10 @@ if __name__ == '__main__': #main program
                         print(e)
                         speak("sorry sir, i am not able to sent this mail to avi")
 
-                elif "open google" in query:
-                    speak("sir, what should i search on google")
-                    cm = take_command().lower()
-                    webbrowser.open(f"{cm}")
+                # elif "open google" in query:
+                #     speak("sir, what should i search on google")
+                #     cm = take_command().lower()
+                #     webbrowser.open(f"{cm}")
 
                 elif "play music" in query:
                     music_dir = "E:\\music"
@@ -354,7 +439,7 @@ if __name__ == '__main__': #main program
                         server.quit()
                         speak("email has been sent to avinash")
 
-                    else:                
+                    else: 
                         email = 'your@gmail.com' # Your email
                         password = 'your_pass' # Your email account password
                         send_to_email = 'To_person@gmail.com' # Whom you are sending the message to
@@ -380,18 +465,6 @@ def get_news():
     for article in articles:
         news_list.append(article["title"])
     return news_list
-
-def tell_news():
-    news_list = get_news()
-    if len(news_list) > 0:
-        speak("Here are the top headlines for today in India:")
-        for news in news_list:
-            speak(news)
-    else:
-        speak("Sorry, I couldn't find any news headlines for today in India.")
-
-if __name__ == "__main__":
-    tell_news()
                 
 def YouTubeAuto(command):
 
@@ -567,3 +640,4 @@ def ChromeAuto(command):
             string_2 = string.replace(" ","")
 
             web.open(string_2)
+
