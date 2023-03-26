@@ -32,8 +32,6 @@ import webbrowser as web
 
 
 
-
-
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[0].id)
@@ -185,6 +183,65 @@ if __name__ == '__main__': #main program
                     from keyboard1 import volumedown
                     speak("Turning volume down, sir")
                     volumedown()
+
+                #Chrome automation  
+                
+                elif "open browser" in query:
+                    web = "https://www.google.com/"
+                    webbrowser.open(web)
+                    speak("opening Chrome for you sir")
+
+                    
+                elif "open new tab" in query:
+                    
+                    pyautogui.hotkey("ctrl", "t")
+                    speak("opening new tab")
+                
+                elif "search" in query:
+                    query = query.replace("search", "").strip()
+                    web = "https://www.google.com/search?q=" + query
+                    webbrowser.open(web)
+                    pyautogui.sleep(5)
+                    pyautogui.click(200, 200)  
+                     
+                elif "switch tab" in query:   #currently error
+                    tab_number = int(query.split()[-1])
+                    pyautogui.hotkey("ctrl", str(tab_number))
+                    speak("switching to another tab") 
+            
+                elif "open incognito" in query:
+                    pyautogui.hotkey("ctrl", "shift", "n")         
+                    speak("opening incognito") 
+            
+                
+                elif "close this tab" in query:
+                    pyautogui.hotkey("ctrl", "w")
+                    speak("okay closing the tab") 
+                
+                elif "refresh this tab" in query:
+                    pyautogui.hotkey("ctrl", "r")
+                    speak("okay refreshing the tab")
+
+                elif "bookmark this tab" in query:
+                    pyautogui.hotkey("ctrl", "d")
+                    pyautogui.press("enter")
+                    speak("okay this tab is bookmarked for you")
+            
+                elif "show history" in query:
+                    pyautogui.hotkey("ctrl", "h")
+                    speak("showing you the history") 
+            
+                elif "show downloads" in query:
+                    pyautogui.hotkey("ctrl", "j")
+                    speak("showing you the downloads") 
+            
+                elif "show bookmarks" in query:
+                    pyautogui.hotkey("ctrl", "shift", "o")
+                    speak("these are the bookmarks you have made") 
+                    
+                elif "scroll down" in query:
+                    pyautogui.scroll(500)
+                    speak("scrolling down") 
                 
 
                 # elif "youtube" in query:
