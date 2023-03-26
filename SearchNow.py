@@ -42,7 +42,7 @@ def searchGoogle(query):
 
         try:
             pywhatkit.search(query)
-            result = googleScrap.summary(query,1)
+            result = googleScrap.summary(query,)
             speak(result)
 
         except:
