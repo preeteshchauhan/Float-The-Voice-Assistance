@@ -28,6 +28,10 @@ from keyboard import write
 from pyautogui import click, sleep
 from keyboard import press_and_release
 import webbrowser as web
+import speech_recognition as sr
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
 
 
@@ -112,9 +116,7 @@ def news():
     for i in range (len(day)):
         # print(f"today's {day[i]} news is: ", head[i])
         speak(f"today's {day[i]} news is: {head[i]}")
-
     
-
 if __name__ == '__main__': #main program
     while True:
         if wake_up():
@@ -241,8 +243,62 @@ if __name__ == '__main__': #main program
                     
                 elif "scroll down" in query:
                     pyautogui.scroll(500)
-                    speak("scrolling down") 
+                    speak("scrolling down")
+
+                #Amazon automation
+                elif "open amazon" in query:
+                    web = "https://www.amazon.com/"
+                    webbrowser.open(web)
+                    speak("opening amazon for you sir")
                 
+                elif "search amazon" in query:
+                    speak("This is what I found for your search!") 
+                    query = query.replace("search amazon","")
+                    query = query.replace("amazon","")
+                    query = query.replace("jarvis","")
+                    web  = "https://www.amazon.com/s?k=" + query
+                    webbrowser.open(web)
+                    speak("Done, Sir")
+
+                elif "open amazon cart" in query:
+                    speak("opening your amazon cart") 
+                    query = query.replace("open amazon cart","")
+                    query = query.replace("amazon","")
+                    query = query.replace("float","")
+                    web  = "https://www.amazon.com/gp/cart/view.html?ref_=nav_cart" + query
+                    webbrowser.open(web)
+                    speak("Done, Sir")
+
+                elif "proceed to check out" in query:
+                    speak("checking out your cart")
+                    web  = "https://www.amazon.com/gp/buy/payselect/handlers/display.html?_from=cheetah"
+                    webbrowser.open(web)
+                    speak("Done, Sir")
+
+                elif "open flipkart" in query:
+                    web = "https://www.flipkart.com/"
+                    webbrowser.open(web)
+                    speak("opening flipkart for you sir")
+
+                elif "search flipkart" in query:
+                    speak("This is what I found for your search!") 
+                    query = query.replace("search amazon","")
+                    query = query.replace("amazon","")
+                    query = query.replace("jarvis","")
+                    web  = "https://www.flipkart.com/search?q=" + query
+                    webbrowser.open(web)
+                    speak("Done, Sir")
+            
+                elif "open flipkart cart" in query:
+                    speak("opening your amazon cart") 
+                    query = query.replace("open amazon cart","")
+                    query = query.replace("amazon","")
+                    query = query.replace("float","")
+                    web  = "https://www.flipkart.com/viewcart?exploreMode=true&preference=FLIPKART" + query
+                    webbrowser.open(web)
+                    speak("Done, Sir")
+
+
 
                 # elif "youtube" in query:
                 #     speak("This is what I found for your search!") 
