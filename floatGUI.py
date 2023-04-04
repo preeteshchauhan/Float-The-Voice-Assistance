@@ -9,6 +9,8 @@ from PyQt5.uic import loadUiType
 import float
 import webbrowser as web
 import sys
+from PyQt5.QtCore import pyqtSignal, QObject
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit
 
 
 class MainThread(QThread):
@@ -53,6 +55,63 @@ class Gui_Start(QMainWindow):
 
         startExe.start()
 
-GuiApp = QApplication(sys.argv)
-exit(GuiApp.exec_())
+class Assistant(QObject):
+    def __init__(self):
+        super().__init__()
 
+    def process_input(self, text):
+        # Process user's input and return assistant's response
+        return "Hello, I am your smart voice assistant."
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Smart Voice Assistant")
+
+        # Create the QTextEdit widget
+        self.text_edit = QTextEdit()
+        self.setCentralWidget(self.text_edit)
+
+        # Connect the textChanged signal to the process_input slot
+        self.text_edit.textChanged.connect(self.process_input)
+
+        # Create an instance of the Assistant class
+        self.assistant = Assistant()
+
+    def process_input(self):
+        # Get the user's input
+        text = self.text_edit.toPlainText()
+
+        # Process the input using the Assistant class
+        response = self.assistant.process_input(text)
+
+        # Display the response in the QTextEdit widget
+        self.text_edit.setText(response)
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        # Set up the UI from the .ui file created in Designer
+        self.setupUi(self)
+
+        # Create a QTimer to update the QDateTimeEdit widget every second
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.updateDateTime)
+        self.timer.start(1000)
+
+    def updateDateTime(self):
+        # Get the current date and time
+        currentDateTime = QDateTime.currentDateTime()
+
+        # Update the QDateTimeEdit widget with the current date and time
+        self.dateTimeEdit.setDateTime(currentDateTime)
+
+if __name__ == "__main__":
+    import sys
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
+ 
