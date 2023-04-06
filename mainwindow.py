@@ -37,6 +37,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.youtube = QtWidgets.QPushButton(self.centralwidget)
         self.youtube.setGeometry(QtCore.QRect(71, 202, 157, 55))
         self.youtube.setAutoFillBackground(False)
@@ -44,8 +45,8 @@ class Ui_MainWindow(object):
 "font: 81 20pt \"Montserrat ExtraBold\";\n"
 "border-color: rgb(48, 79, 157);")
         self.youtube.setObjectName("youtube")
-        # self.youtube.setObjectName("youtube")
         self.youtube.clicked.connect(lambda: webbrowser.open("https://www.youtube.com"))
+
         self.browser = QtWidgets.QPushButton(self.centralwidget)
         self.browser.setGeometry(QtCore.QRect(520, 200, 157, 55))
         self.browser.setAutoFillBackground(False)
@@ -53,6 +54,7 @@ class Ui_MainWindow(object):
 "font: 81 20pt \"Montserrat ExtraBold\";\n"
 "border-color: rgb(48, 79, 157);")
         self.browser.setObjectName("browser")
+        
         self.whatsapp = QtWidgets.QPushButton(self.centralwidget)
         self.whatsapp.setGeometry(QtCore.QRect(280, 202, 192, 55))
         self.whatsapp.setAutoFillBackground(False)
