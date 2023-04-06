@@ -12,6 +12,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
 import webbrowser
 import float
+from threading import Thread
+
+class OutputThread(Thread):
+     def __init__(self, event):
+         Thread.__init__(self)
+         self.stopped = event
+
+     def run(self):
+         while not self.stopped.wait(1):
+             output = float.get_output()  # call the function from your module
+             print(output)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -32,9 +43,17 @@ class Ui_MainWindow(object):
 
         self.youtube = QtWidgets.QPushButton(self.centralwidget)
         self.youtube.setGeometry(QtCore.QRect(10, 80, 81, 61))
-        self.youtube.setMouseTracking(False)
+        # self.youtube.setMouseTracking(False)
         self.youtube.setObjectName("youtube")
         self.youtube.clicked.connect(lambda: webbrowser.open("https://www.youtube.com"))
+#         self.youtube = QtWidgets.QPushButton(self.centralwidget)
+#         self.youtube.setGeometry(QtCore.QRect(71, 202, 157, 55))
+#         self.youtube.setAutoFillBackground(False)
+#         self.youtube.setStyleSheet("color: rgb(72, 117, 177);\n"
+# "font: 81 20pt \"Montserrat ExtraBold\";\n"
+# "border-color: rgb(48, 79, 157);")
+#         self.youtube.setObjectName("youtube")
+#         self.youtube.clicked.connect(lambda: webbrowser.open("https://www.youtube.com"))
 
         self.whatsapp = QtWidgets.QPushButton(self.centralwidget)
         self.whatsapp.setGeometry(QtCore.QRect(20, 180, 81, 61))

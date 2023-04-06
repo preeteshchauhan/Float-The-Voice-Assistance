@@ -523,4 +523,4 @@ def get_output():
         for article in articles:
             news_list.append(article["title"])
         return news_list
-    return output
+    return get_output
