@@ -81,20 +81,6 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>380</y>
-      <width>831</width>
-      <height>371</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 63 12pt &quot;Montserrat SemiBold&quot;;
-color: white;</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="whatsapp">
     <property name="enabled">
      <bool>true</bool>
@@ -148,6 +134,35 @@ color: white;</string>
       <width>75</width>
       <height>85</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>750</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>400</y>
+      <width>901</width>
+      <height>331</height>
+     </rect>
     </property>
    </widget>
   </widget>
