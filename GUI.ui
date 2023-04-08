@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1107</width>
+    <height>851</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(5, 0, 30);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="gif">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>-110</y>
+      <width>871</width>
+      <height>631</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="assets.qrc">:/maal masala/__02-____ (1).gif</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="google">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>287</y>
+      <width>98</width>
+      <height>94</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="assets.qrc">
+      <normaloff>:/maal masala/Google__G__Logo.svg.png</normaloff>:/maal masala/Google__G__Logo.svg.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>30</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="assets.qrc">:/maal masala/float-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="whatsapp">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>185</y>
+      <width>98</width>
+      <height>94</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="assets.qrc">
+      <normaloff>:/maal masala/sm_5b321c99945a2-removebg-preview.png</normaloff>:/maal masala/sm_5b321c99945a2-removebg-preview.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>85</width>
+      <height>85</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="youtube">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>83</y>
+      <width>98</width>
+      <height>94</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="assets.qrc">
+      <normaloff>:/maal masala/red-flag-icon-youtube-logo-icon-design-youtube-play-buttons-arrow-rectangle-symbol-png-clipart-removebg-preview.png</normaloff>:/maal masala/red-flag-icon-youtube-logo-icon-design-youtube-play-buttons-arrow-rectangle-symbol-png-clipart-removebg-preview.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>75</width>
+      <height>85</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>750</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>400</y>
+      <width>901</width>
+      <height>331</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
+ <connections/>
+</ui>

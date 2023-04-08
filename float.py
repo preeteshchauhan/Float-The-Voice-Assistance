@@ -28,13 +28,6 @@ from keyboard import write
 from pyautogui import click, sleep
 from keyboard import press_and_release
 import webbrowser as web
-import speech_recognition as sr
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
-
-
-
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -47,7 +40,6 @@ def speak(audio):
     print(audio)
     engine.runAndWait()
 
-    
 #to wish
 def wish_me():
     hour = datetime.datetime.now().hour
@@ -75,31 +67,32 @@ def take_command():
         return "None"
     return query
 
-""" 
-#to send email
-def sendEmail(to,content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login('YOUR EMAIL ADDRESS', 'YOUR PASSWORD')
-    server.sendmail('YOUR EMAIL ADDRESS', to, content)
-    server.close()
- """
-
 #to wake up
-def wake_up():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Sleeping.....")
-        audio = r.listen(source)
-    try:
-        text = r.recognize_google(audio)
-        if "wake up" in text.lower():  # Change "wake up" to your wake-up phrase
-            print("Wake-up phrase detected")
-            return True
-    except sr.UnknownValueError:
-        pass
-    return False
+# def wake_up():
+#     r = sr.Recognizer()
+#     with sr.Microphone() as source:
+#         print("Sleeping.....")
+#         audio = r.listen(source)
+#     try:
+#         text = r.recognize_google(audio)
+#         if "wake up" in text.lower():  # Change "wake up" to your wake-up phrase
+#             print("Wake-up phrase detected")
+#             return True
+#     except sr.UnknownValueError:
+#         pass
+#     return False
+
+
+def get_news():
+    api_key = "093d6c17a5ef4ace899a09a3ebe7109f"
+    url = f"https://newsapi.org/v2/top-headlines?country=in&apiKey={api_key}"
+    response = requests.get(url)
+    news_data = json.loads(response.text)
+    articles = news_data["articles"]
+    news_list = []
+    for article in articles:
+        news_list.append(article["title"])
+    return news_list
 
 #for news updates
 def news():
@@ -116,10 +109,10 @@ def news():
     for i in range (len(day)):
         # print(f"today's {day[i]} news is: ", head[i])
         speak(f"today's {day[i]} news is: {head[i]}")
-    
-if __name__ == '__main__': #main program
+
+def voice_assistant():
     while True:
-        if wake_up():
+        # if wake_up():
             wish_me()
             while True:
                 query = take_command().lower()
@@ -175,7 +168,7 @@ if __name__ == '__main__': #main program
                     speak("fastforwarding the video")
                 elif "decrease speed" in query or "slow the video" in query: #currently giving error
                     press_and_release("SHIFT + ,")
-                               
+                            
 
                 elif "volume up" in query:
                     from keyboard1 import volumeup
@@ -205,7 +198,7 @@ if __name__ == '__main__': #main program
                     webbrowser.open(web)
                     pyautogui.sleep(5)
                     pyautogui.click(200, 200)  
-                     
+                    
                 elif "switch tab" in query:   #currently error
                     tab_number = int(query.split()[-1])
                     pyautogui.hotkey("ctrl", str(tab_number))
@@ -245,12 +238,6 @@ if __name__ == '__main__': #main program
                     pyautogui.scroll(500)
                     speak("scrolling down")
 
-                #Amazon automation
-                elif "open amazon" in query:
-                    web = "https://www.amazon.com/"
-                    webbrowser.open(web)
-                    speak("opening amazon for you sir")
-                
                 elif "search amazon" in query:
                     speak("This is what I found for your search!") 
                     query = query.replace("search amazon","")
@@ -325,7 +312,6 @@ if __name__ == '__main__': #main program
                 #     except:
                 #         speak("No speakable output available")
 
-
                 elif "take a screenshot" in query:
                     # Get the screen dimensions
                     screen_width, screen_height = pyautogui.size()
@@ -341,7 +327,6 @@ if __name__ == '__main__': #main program
                     speak(f"Screenshot saved as {filename}")
                     # speak("Screenshot saved as screenshot.png.")
                     
-                
                 elif 'youtube' in query and 'search' in query:
                     speak(f"What Should I Search?")
                     search_yt = take_command()
@@ -378,9 +363,6 @@ if __name__ == '__main__': #main program
                     time.sleep(120)
                     speak("message has been sent")
 
-                # elif "song on youtube" in query:
-                #     kit.playonyt("see you again")
-
                 elif 'timer' in query or 'stopwatch' in query:
                     speak("For how many minutes?")
                     timing = take_command()
@@ -404,11 +386,6 @@ if __name__ == '__main__': #main program
                     except Exception as e:
                         print(e)
                         speak("sorry sir, i am not able to sent this mail to avi")
-
-                # elif "open google" in query:
-                #     speak("sir, what should i search on google")
-                #     cm = take_command().lower()
-                #     webbrowser.open(f"{cm}")
 
                 elif "play music" in query:
                     music_dir = "E:\\music"
@@ -456,7 +433,6 @@ if __name__ == '__main__': #main program
                     query = query.replace("jarvis","")
                     Calc(query)
 
-
                 elif "shutdown the system" in query:
                     speak("Are You sure you want to shutdown")
                     shutdown = take_command()
@@ -472,7 +448,7 @@ if __name__ == '__main__': #main program
                     data = BeautifulSoup(r.text,"html.parser")
                     temp = data.find("div", class_ = "BNeawe").text
                     speak(f"current {search} is {temp}")
-                    
+
                 elif "restart the system" in query:
                     os.system("shutdown /r /t 5")
 
@@ -496,17 +472,15 @@ if __name__ == '__main__': #main program
                     file = open("float.txt", "r")
                     print(file.read())
                     speak(file.read(6))
-                   
+                
                 elif 'news' in query:
                     from newsread import latestnews
                     latestnews()
-                    
-                    
+
                 elif "tell me news" in query:
                     speak("please wait sir, feteching the latest news")
                     news()
-                    
-                
+
                 elif "email to avinash" in query:
                
                     speak("sir what should i say")
@@ -552,32 +526,22 @@ if __name__ == '__main__': #main program
                         server.quit()
                         speak("email has been sent to avinash")
 
-                    else: 
-                        email = 'your@gmail.com' # Your email
-                        password = 'your_pass' # Your email account password
-                        send_to_email = 'To_person@gmail.com' # Whom you are sending the message to
-                        message = query # The message in the email
+                else: 
+                    email = 'your@gmail.com' # Your email
+                    password = 'your_pass' # Your email account password
+                    send_to_email = 'To_person@gmail.com' # Whom you are sending the message to
+                    message = query # The message in the email
 
-                        server = smtplib.SMTP('smtp.gmail.com', 587) # Connect to the server
-                        server.starttls() # Use TLS
-                        server.login(email, password) # Login to the email server
-                        server.sendmail(email, send_to_email , message) # Send the email
-                        server.quit() # Logout of the email server
-                        speak("email has been sent to avinash")
-                
+                    server = smtplib.SMTP('smtp.gmail.com', 587) # Connect to the server
+                    server.starttls() # Use TLS
+                    server.login(email, password) # Login to the email server
+                    server.sendmail(email, send_to_email , message) # Send the email
+                    server.quit() # Logout of the email server
+                    speak("email has been sent to avinash")
+            
                 # speak("sir, do you have any other work")
 
+if __name__ == '__main__': #main program
+    voice_assistant()
 
-def get_news():
-    api_key = "093d6c17a5ef4ace899a09a3ebe7109f"
-    url = f"https://newsapi.org/v2/top-headlines?country=in&apiKey={api_key}"
-    response = requests.get(url)
-    news_data = json.loads(response.text)
-    articles = news_data["articles"]
-    news_list = []
-    for article in articles:
-        news_list.append(article["title"])
-    return news_list
-                
-                
 
