@@ -543,3 +543,5 @@ def voice_assistant():
 
 if __name__ == '__main__': #main program
     voice_assistant()
+
+
