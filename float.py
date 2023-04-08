@@ -285,7 +285,9 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("Done, Sir")
 
-
+                elif "send email" in query:
+                    from testemail import main_poc
+                    main_poc()
 
                 # elif "youtube" in query:
                 #     speak("This is what I found for your search!") 
