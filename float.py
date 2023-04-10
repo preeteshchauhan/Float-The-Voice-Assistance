@@ -209,15 +209,15 @@ def voice_assistant():
                     speak("opening incognito") 
             
                 
-                elif "close this tab" in query:
+                elif "close tab" in query:
                     pyautogui.hotkey("ctrl", "w")
                     speak("okay closing the tab") 
                 
-                elif "refresh this tab" in query:
+                elif "refresh tab" in query:
                     pyautogui.hotkey("ctrl", "r")
                     speak("okay refreshing the tab")
 
-                elif "bookmark this tab" in query:
+                elif "bookmark tab" in query:
                     pyautogui.hotkey("ctrl", "d")
                     pyautogui.press("enter")
                     speak("okay this tab is bookmarked for you")
@@ -238,11 +238,16 @@ def voice_assistant():
                     pyautogui.scroll(500)
                     speak("scrolling down")
 
-                elif "search amazon" in query:
+                elif "open amazon" in query:
+                    web = "https://www.amazon.com/"
+                    webbrowser.open(web)
+                    speak("opening amazon for you sir")
+
+                elif "amazon search" in query:
                     speak("This is what I found for your search!") 
-                    query = query.replace("search amazon","")
+                    query = query.replace("amazon search","")
                     query = query.replace("amazon","")
-                    query = query.replace("jarvis","")
+                    query = query.replace("float","")
                     web  = "https://www.amazon.com/s?k=" + query
                     webbrowser.open(web)
                     speak("Done, Sir")
@@ -267,19 +272,19 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("opening flipkart for you sir")
 
-                elif "search flipkart" in query:
+                elif "flipkart search" in query:
                     speak("This is what I found for your search!") 
-                    query = query.replace("search amazon","")
-                    query = query.replace("amazon","")
-                    query = query.replace("jarvis","")
+                    query = query.replace("flipkar search","")
+                    query = query.replace("flipkart","")
+                    query = query.replace("float","")
                     web  = "https://www.flipkart.com/search?q=" + query
                     webbrowser.open(web)
                     speak("Done, Sir")
             
                 elif "open flipkart cart" in query:
                     speak("opening your amazon cart") 
-                    query = query.replace("open amazon cart","")
-                    query = query.replace("amazon","")
+                    query = query.replace("open flipkart cart","")
+                    query = query.replace("filpkart","")
                     query = query.replace("float","")
                     web  = "https://www.flipkart.com/viewcart?exploreMode=true&preference=FLIPKART" + query
                     webbrowser.open(web)
@@ -327,13 +332,13 @@ def voice_assistant():
                     speak(f"Screenshot saved as {filename}")
                     # speak("Screenshot saved as screenshot.png.")
                     
-                elif 'youtube' in query and 'search' in query:
-                    speak(f"What Should I Search?")
-                    search_yt = take_command()
-                    search_yt = search_yt.replace(" ", "+")
-                    speak("Here We Go")
-                    webbrowser.open(
-                        f"https://www.youtube.com/results?search_query={search_yt}")
+                # elif 'youtube' in query and 'search' in query:
+                #     speak(f"What Should I Search?")
+                #     search_yt = take_command()
+                #     search_yt = search_yt.replace(" ", "+")
+                #     speak("Here We Go")
+                #     webbrowser.open(
+                #         f"https://www.youtube.com/results?search_query={search_yt}")
 
                 elif "open notepad" in query:
                     npath = "C:\\Windows\\system32\\notepad.exe"
@@ -395,7 +400,7 @@ def voice_assistant():
                         if song.endswith('.mp3'):
                             os.startfile(os.path.join(music_dir, song))
 
-                elif 'what is the time' in query:
+                elif 'time' in query:
                     str_time = datetime.datetime.now().strftime("%H:%M:%S")
                     speak(f"The time is {str_time}")
 
