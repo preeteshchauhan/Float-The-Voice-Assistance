@@ -325,7 +325,7 @@ def voice_assistant():
                     speak(chat_response)
 
                 elif "send email" in query:
-                    from testemail2 import main_poc
+                    from testemail import main_poc
                     main_poc()
 
                 # elif "youtube" in query:
@@ -572,5 +572,3 @@ def voice_assistant():
 
 if __name__ == '__main__': #main program
     voice_assistant()
-
-
