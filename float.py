@@ -28,6 +28,7 @@ from keyboard import write
 from pyautogui import click, sleep
 from keyboard import press_and_release
 import webbrowser as web
+import openai
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -67,20 +68,42 @@ def take_command():
         return "None"
     return query
 
-#to wake up
-# def wake_up():
-#     r = sr.Recognizer()
-#     with sr.Microphone() as source:
-#         print("Sleeping.....")
-#         audio = r.listen(source)
-#     try:
-#         text = r.recognize_google(audio)
-#         if "wake up" in text.lower():  # Change "wake up" to your wake-up phrase
-#             print("Wake-up phrase detected")
-#             return True
-#     except sr.UnknownValueError:
-#         pass
-#     return False
+def chat_with_gpt(user_input):
+    # Set up your OpenAI API credentials
+    openai.api_key = "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"  # Replace with your actual API key
+
+    # Define the model parameters
+    model_engine = "text-davinci-0026"  # Choose the appropriate model engine
+    prompt = f"Chat with GPT-3: {user_input}"  # Create a prompt with user input
+
+    # Generate response from ChatGPT
+    response = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=200,  # Define the maximum number of tokens in the response
+        n=1,  # Specify the number of responses to generate
+        stop=None,  # Set any stop sequences as needed
+    )
+
+    # Extract the generated response from the API response
+    chat_response = response.choices[0].text.strip()
+
+    return chat_response
+
+# to wake up
+def wake_up():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Sleeping.....")
+        audio = r.listen(source)
+    try:
+        text = r.recognize_google(audio)
+        if "wake up" in text.lower():  # Change "wake up" to your wake-up phrase
+            print("Wake-up phrase detected")
+            return True
+    except sr.UnknownValueError:
+        pass
+    return False
 
 
 def get_news():
@@ -112,7 +135,7 @@ def news():
 
 def voice_assistant():
     while True:
-        # if wake_up():
+        if wake_up():
             wish_me()
             while True:
                 query = take_command().lower()
@@ -289,6 +312,17 @@ def voice_assistant():
                     web  = "https://www.flipkart.com/viewcart?exploreMode=true&preference=FLIPKART" + query
                     webbrowser.open(web)
                     speak("Done, Sir")
+
+                elif "chat" in query or "chatbot" in query or "talk" in query:
+                    # Get user input for chat
+                    speak("Sure! What would you like to chat about?")
+                    chat_input = take_command().lower()
+
+                    # Call ChatGPT to generate response
+                    chat_response = chat_with_gpt(chat_input)
+
+                    # Speak the generated response
+                    speak(chat_response)
 
                 elif "send email" in query:
                     from testemail import main_poc
@@ -534,19 +568,7 @@ def voice_assistant():
                         speak("email has been sent to avinash")
 
                 else: 
-                    email = 'your@gmail.com' # Your email
-                    password = 'your_pass' # Your email account password
-                    send_to_email = 'To_person@gmail.com' # Whom you are sending the message to
-                    message = query # The message in the email
-
-                    server = smtplib.SMTP('smtp.gmail.com', 587) # Connect to the server
-                    server.starttls() # Use TLS
-                    server.login(email, password) # Login to the email server
-                    server.sendmail(email, send_to_email , message) # Send the email
-                    server.quit() # Logout of the email server
-                    speak("email has been sent to avinash")
-            
-                # speak("sir, do you have any other work")
+                    speak("I am not sure how to help with that. Can you please repeat or try something else?")
 
 if __name__ == '__main__': #main program
     voice_assistant()
