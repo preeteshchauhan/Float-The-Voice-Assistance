@@ -89,6 +89,8 @@ class Ui_MainWindow(object):
         self.start_button.setGeometry(QtCore.QRect(510, 750, 141, 51))
         self.start_button.setIconSize(QtCore.QSize(30, 30))
         self.start_button.setObjectName("start_button")
+        self.start_button.setStyleSheet("border: 2px solid white;")  #add border white color
+        self.start_button.setStyleSheet("font-size: 20px; color: white;") #Increase text size and set text color to white
         self.start_button.clicked.connect(self.start_button_clicked)
 
         self.console_output = QtWidgets.QTextEdit(self.centralwidget)
@@ -106,7 +108,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "START"))
+        self.start_button.setText(_translate("MainWindow", "START"))
 
     def start_button_clicked(self):
         """Handles start button click event."""
