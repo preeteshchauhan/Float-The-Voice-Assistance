@@ -42,7 +42,8 @@ def searchGoogle(query):
 
         try:
             pywhatkit.search(query)
-            result = googleScrap.summary(query,)
+            result = googleScrap.summary(query,sentences = 2)
+            print(result)
             speak(result)
 
         except:
