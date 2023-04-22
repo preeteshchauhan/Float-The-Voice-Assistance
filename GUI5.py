@@ -15,6 +15,7 @@ import io
 import webbrowser
 from float import voice_assistant
 
+
 class QTextEditStream(io.TextIOBase):
     def __init__(self, text_edit):
         self.text_edit = text_edit
@@ -119,6 +120,8 @@ class Ui_MainWindow(object):
         thread = threading.Thread(target=voice_assistant)
         thread.start()
 
+    
+
 
 if __name__ == "__main__":
     import sys
@@ -128,3 +131,6 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+    voice_assistant() # Call voice_assistant function
+
+
