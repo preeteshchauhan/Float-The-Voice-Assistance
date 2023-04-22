@@ -120,8 +120,6 @@ class Ui_MainWindow(object):
         thread = threading.Thread(target=voice_assistant)
         thread.start()
 
-    
-
 
 if __name__ == "__main__":
     import sys
@@ -130,7 +128,8 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+    ui.start_button.click()  # Programmatically click start button
     sys.exit(app.exec_())
-    voice_assistant() # Call voice_assistant function
+    # voice_assistant() # Call voice_assistant function
 
 
