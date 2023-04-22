@@ -12,6 +12,22 @@ rate = engine.setProperty("rate",170)
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
+    
+def take_command():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+    except Exception as e:
+        print("Say that again please...")
+        return "None"
+    return query
+
 
 def latestnews():
     api_dict = {"business" : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=093d6c17a5ef4ace899a09a3ebe7109f",
@@ -49,11 +65,13 @@ def latestnews():
         speak(article)
         news_url = articles["url"]
         print(f"for more info visit: {news_url}")
+        speak(f"for more info visit the provided link")
 
-        a = input("[press 1 to cont] and [press 0 to stop]: ")
-        if str(a) == "1":
+        a = speak("Say yes if you want to hear more news in this field or no if you don't want to. ")
+        query = take_command().lower()
+        if  "yes" in query:
             pass
-        elif str(a) == "0":
+        elif "no" in query:
             break
         
     speak("thats all")
