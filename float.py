@@ -133,6 +133,35 @@ def news():
         # print(f"today's {day[i]} news is: ", head[i])
         speak(f"today's {day[i]} news is: {head[i]}")
 
+#flipkart automation
+def add_cart_filpkart(button_x, button_y):
+    pyautogui.moveTo(button_x, button_y)
+    pyautogui.click(button='left')
+
+    button_x = 342
+    button_y = 835
+
+    pyautogui.moveTo(button_x, button_y)
+
+def select_product_1(button_x, button_y):
+    pyautogui.moveTo(button_x, button_y)
+    pyautogui.click(button='left')
+
+    button_x = 499
+    button_y = 473
+
+    pyautogui.moveTo(button_x, button_y)
+
+def select_product_2(button_x, button_y):
+    pyautogui.moveTo(button_x, button_y)
+    pyautogui.click(button='left')
+
+    button_x = 525
+    button_y = 824
+
+    pyautogui.moveTo(button_x, button_y)
+    
+
 def voice_assistant():
     while True:
         if wake_up():
@@ -313,6 +342,7 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("Done, Sir")
 
+                #flipkart automation functions 
                 elif "open flipkart" in query:
                     web = "https://www.flipkart.com/"
                     webbrowser.open(web)
@@ -335,6 +365,31 @@ def voice_assistant():
                     web  = "https://www.flipkart.com/viewcart?exploreMode=true&preference=FLIPKART" + query
                     webbrowser.open(web)
                     speak("Done, Sir")
+
+                elif "place an order" in query:
+                    speak("placing order from your cart")
+                    web  = "https://www.flipkart.com/checkout/init?view=FLIPKART&loginFlow=false"
+                    webbrowser.open(web)
+                    speak("Done, Sir")                
+
+                elif "add this to my cart" in query:
+                    button_x = 342
+                    button_y = 835
+                    add_cart_filpkart(button_x, button_y)
+                    speak("added this product to your flipkart cart")
+
+                elif "product 1" in query:
+                    button_x = 499
+                    button_y = 473
+                    add_cart_filpkart(button_x, button_y)
+                    speak("opening first product from your search result")
+
+                elif "product 2" in query:
+                    button_x = 525
+                    button_y = 824
+                    add_cart_filpkart(button_x, button_y)
+                    speak("opening second product from your search result")
+
 
                 elif "chat" in query or "chatbot" in query or "talk" in query:
                     # Get user input for chat
