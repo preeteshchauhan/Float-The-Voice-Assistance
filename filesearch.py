@@ -1,66 +1,27 @@
-import os
-import pyttsx3
-import speech_recognition as sr
+import requests
+from bs4 import BeautifulSoup
 
-# create a text-to-speech engine object
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-rate = engine.setProperty("rate",170)
+# Replace the URL with the product page of your choice
+url = 'https://www.amazon.com/dp/B08P3S7P7R'
 
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-    
-def take_command():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening...")
-        r.pause_threshold = 1
-        audio = r.listen(source)
-    try:
-        print("Recognizing...")
-        query = r.recognize_google(audio, language='en-in')
-        print(f"User said: {query}\n")
-    except Exception as e:
-        print("Say that again please...")
-        return "None"
-    return query
+# Send a GET request to the product page and parse the HTML content
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
 
-def open_file(file_path):
-    try:
-        os.startfile(file_path)
-        speak("Opening the file")
-    except Exception as e:
-        print(e)
-        speak("Sorry, I could not open the file")
-        
-# function to search a file in the computer system
-def search_file():
-    speak("What is the name of the file you are looking for?")
-    file_name = take_command().lower()
-    for root, dirs, files in os.walk('C:/'):  # change the directory path as per your system
-        for name in files:
-            if file_name in name.lower():
-                file_path = os.path.join(root, name)
-                speak(f"I found the file {name}.")
-                open_file(file_path)
-                return
-    speak("Sorry, I couldn't find the file.")
+# Find the add to cart form and extract the necessary data
+form = soup.find('form', {'id': 'addToCart'})
+data = {
+    'session-id': soup.find('input', {'name': 'session-id'})['value'],
+    'quantity': 1, # change this to the desired quantity
+    'asin': soup.find('input', {'name': 'asin'})['value'],
+    'submit.add-to-cart': soup.find('input', {'name': 'submit.add-to-cart'})['value']
+}
 
-# main function to control the voice assistant
-if __name__ == "__main__":
-    speak("Hi, I am your voice assistant. How can I help you?")
-    while True:
-        query = take_command().lower()
-        if "search file" in query:
-            search_file()
-        elif "exit" in query or "stop" in query:
-            speak("Goodbye!")
-            break
+# Send a POST request to the add to cart URL with the necessary data
+response = requests.post('https://www.amazon.com/gp/add-to-cart/process/', data=data)
 
-    
-        
-        
-        
-        
+# Check if the item was successfully added to the cart
+if 'Added to Cart' in response.text:
+    print('Item successfully added to cart!')
+else:
+    print('Failed to add item to cart.')
