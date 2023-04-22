@@ -133,6 +133,25 @@ def news():
         # print(f"today's {day[i]} news is: ", head[i])
         speak(f"today's {day[i]} news is: {head[i]}")
 
+#Amazon automation
+def amazon_product_1(button_x, button_y):
+    pyautogui.moveTo(button_x, button_y)
+    pyautogui.click(button='left')
+
+    button_x = 466
+    button_y = 496
+
+    pyautogui.moveTo(button_x, button_y)
+
+def amazon_product_2(button_x, button_y):
+    pyautogui.moveTo(button_x, button_y)
+    pyautogui.click(button='left')
+
+    button_x = 467
+    button_y = 748
+
+    pyautogui.moveTo(button_x, button_y)
+
 #flipkart automation
 def add_cart_filpkart(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
@@ -143,7 +162,7 @@ def add_cart_filpkart(button_x, button_y):
 
     pyautogui.moveTo(button_x, button_y)
 
-def select_product_1(button_x, button_y):
+def flipkart_product_1(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
     pyautogui.click(button='left')
 
@@ -152,7 +171,7 @@ def select_product_1(button_x, button_y):
 
     pyautogui.moveTo(button_x, button_y)
 
-def select_product_2(button_x, button_y):
+def flipkart_product_2(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
     pyautogui.click(button='left')
 
@@ -313,12 +332,14 @@ def voice_assistant():
                     pyautogui.scroll(1)
                     speak("scrolling up")
 
+                
+                #Amazon automation functions 
                 elif "open amazon" in query:
                     web = "https://www.amazon.com/"
                     webbrowser.open(web)
                     speak("opening amazon for you sir")
 
-                elif "amazon search" in query:
+                elif "amazon " in query:
                     speak("This is what I found for your search!") 
                     query = query.replace("amazon search","")
                     query = query.replace("amazon","")
@@ -336,6 +357,18 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("Done, Sir")
 
+                elif "product 1" in query:
+                    button_x = 466
+                    button_y = 496
+                    amazon_product_1(button_x, button_y)
+                    speak("opening first product from your search result")
+
+                elif "product 2" in query:
+                    button_x = 467
+                    button_y = 748
+                    amazon_product_2(button_x, button_y)
+                    speak("opening second product from your search result")
+
                 elif "proceed to check out" in query:
                     speak("checking out your cart")
                     web  = "https://www.amazon.com/gp/buy/payselect/handlers/display.html?_from=cheetah"
@@ -348,7 +381,7 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("opening flipkart for you sir")
 
-                elif "flipkart search" in query:
+                elif "flipkart " in query:
                     speak("This is what I found for your search!") 
                     query = query.replace("flipkar search","")
                     query = query.replace("flipkart","")
@@ -381,13 +414,13 @@ def voice_assistant():
                 elif "product 1" in query:
                     button_x = 499
                     button_y = 473
-                    add_cart_filpkart(button_x, button_y)
+                    flipkart_product_1(button_x, button_y)
                     speak("opening first product from your search result")
 
                 elif "product 2" in query:
                     button_x = 525
                     button_y = 824
-                    add_cart_filpkart(button_x, button_y)
+                    flipkart_product_2(button_x, button_y)
                     speak("opening second product from your search result")
 
 
