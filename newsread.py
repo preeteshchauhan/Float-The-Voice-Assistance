@@ -67,7 +67,7 @@ def latestnews():
         print(f"for more info visit: {news_url}")
         speak(f"for more info visit the provided link")
 
-        a = speak("Say yes if you want to hear more news in this field or no if you don't want to. ")
+        a = speak("Speak yes if you want to hear more news in this field or no if you don't want to. ")
         query = take_command().lower()
         if  "yes" in query:
             pass

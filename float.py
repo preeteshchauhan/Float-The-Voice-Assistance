@@ -517,10 +517,16 @@ def voice_assistant():
                 elif 'news' in query:
                     from newsread import latestnews
                     latestnews()
+                    
+                elif "weather" in query:
+                    from weather2 import response
+                    response
 
                 elif "tell me news" in query:
                     speak("please wait sir, feteching the latest news")
                     news()
+                    
+                
 
                 elif "email to avinash" in query:
                
