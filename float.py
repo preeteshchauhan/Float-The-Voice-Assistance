@@ -222,10 +222,29 @@ def voice_assistant():
                     pyautogui.sleep(5)
                     pyautogui.click(200, 200)  
                     
-                elif "switch tab" in query:   #currently error
-                    tab_number = int(query.split()[-1])
-                    pyautogui.hotkey("ctrl", str(tab_number))
-                    speak("switching to another tab") 
+                elif "switch tab to 1" in query:
+                    pyautogui.hotkey("ctrl", "1")
+                elif "switch tab to 2" in query:
+                    pyautogui.hotkey("ctrl", "2")
+                elif "switch tab to 3" in query:
+                    pyautogui.hotkey("ctrl", "3")
+                elif "switch tab to 4" in query:
+                    pyautogui.hotkey("ctrl", "4")
+                elif "switch tab to 5" in query:
+                    pyautogui.hotkey("ctrl", "5")
+                elif "switch tab to 6" in query:
+                    pyautogui.hotkey("ctrl", "6")
+                elif "switch tab to 7" in query:
+                    pyautogui.hotkey("ctrl", "7")
+                elif "switch tab to 8" in query:
+                    pyautogui.hotkey("ctrl", "8")
+                elif "switch tab to 9" in query:
+                    pyautogui.hotkey("ctrl", "9")
+                elif "switch to previous tab" in query:
+                    pyautogui.hotkey("ctrl", "PgUp")
+                elif "switch to next tab" in query:
+                    pyautogui.hotkey("ctrl", "PgDn")
+                    
             
                 elif "open incognito" in query:
                     pyautogui.hotkey("ctrl", "shift", "n")         
@@ -258,8 +277,12 @@ def voice_assistant():
                     speak("these are the bookmarks you have made") 
                     
                 elif "scroll down" in query:
-                    pyautogui.scroll(500)
+                    pyautogui.scroll(-1)
                     speak("scrolling down")
+
+                elif "scroll up" in query:
+                    pyautogui.scroll(1)
+                    speak("scrolling up")
 
                 elif "open amazon" in query:
                     web = "https://www.amazon.com/"
