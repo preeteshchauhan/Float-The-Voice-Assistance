@@ -241,9 +241,9 @@ def voice_assistant():
                 elif "switch tab to 9" in query:
                     pyautogui.hotkey("ctrl", "9")
                 elif "switch to previous tab" in query:
-                    pyautogui.hotkey("ctrl", "PgUp")
+                    pyautogui.hotkey("ctrl", "shift", "tab")
                 elif "switch to next tab" in query:
-                    pyautogui.hotkey("ctrl", "PgDn")
+                    pyautogui.hotkey("ctrl", "tab")
                     
             
                 elif "open incognito" in query:
