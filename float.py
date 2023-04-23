@@ -270,27 +270,27 @@ def voice_assistant():
                     pyautogui.sleep(5)
                     pyautogui.click(200, 200)  
                     
-                elif "switch tab to 1" in query:
+                elif "switch tab 1" in query:
                     pyautogui.hotkey("ctrl", "1")
-                elif "switch tab to 2" in query:
+                elif "switch tab to" in query:
                     pyautogui.hotkey("ctrl", "2")
-                elif "switch tab to 3" in query:
+                elif "switch tab 3" in query:
                     pyautogui.hotkey("ctrl", "3")
-                elif "switch tab to 4" in query:
+                elif "switch tab 4" in query:
                     pyautogui.hotkey("ctrl", "4")
-                elif "switch tab to 5" in query:
+                elif "switch tab 5" in query:
                     pyautogui.hotkey("ctrl", "5")
-                elif "switch tab to 6" in query:
+                elif "switch tab 6" in query:
                     pyautogui.hotkey("ctrl", "6")
-                elif "switch tab to 7" in query:
+                elif "switch tab 7" in query:
                     pyautogui.hotkey("ctrl", "7")
-                elif "switch tab to 8" in query:
+                elif "switch tab 8" in query:
                     pyautogui.hotkey("ctrl", "8")
-                elif "switch tab to 9" in query:
+                elif "switch tab 9" in query:
                     pyautogui.hotkey("ctrl", "9")
-                elif "switch to previous tab" in query:
+                elif "switch previous tab" in query:
                     pyautogui.hotkey("ctrl", "shift", "tab")
-                elif "switch to next tab" in query:
+                elif "switch next tab" in query:
                     pyautogui.hotkey("ctrl", "tab")
                     
             
@@ -316,11 +316,11 @@ def voice_assistant():
                     pyautogui.hotkey("ctrl", "h")
                     speak("showing you the history") 
             
-                elif "show downloads" in query:
+                elif "show download" in query:
                     pyautogui.hotkey("ctrl", "j")
                     speak("showing you the downloads") 
             
-                elif "show bookmarks" in query:
+                elif "show bookmark" in query:
                     pyautogui.hotkey("ctrl", "shift", "o")
                     speak("these are the bookmarks you have made") 
                     
@@ -357,13 +357,13 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("Done, Sir")
 
-                elif "product 1" in query:
+                elif "first product" in query:
                     button_x = 466
                     button_y = 496
                     amazon_product_1(button_x, button_y)
                     speak("opening first product from your search result")
 
-                elif "product 2" in query:
+                elif "second product" in query:
                     button_x = 467
                     button_y = 748
                     amazon_product_2(button_x, button_y)
@@ -411,13 +411,13 @@ def voice_assistant():
                     add_cart_filpkart(button_x, button_y)
                     speak("added this product to your flipkart cart")
 
-                elif "product 1" in query:
+                elif "first product" in query:
                     button_x = 499
                     button_y = 473
                     flipkart_product_1(button_x, button_y)
                     speak("opening first product from your search result")
 
-                elif "product 2" in query:
+                elif "second product" in query:
                     button_x = 525
                     button_y = 824
                     flipkart_product_2(button_x, button_y)
@@ -528,7 +528,7 @@ def voice_assistant():
                     time.sleep(timing)
                     speak('Your time has been finished sir')
 
-                elif "email to avinash" in query:
+                elif "em to avinash" in query:
                     try:
                         speak("what should i say?")
                         content = take_command().lower()
@@ -639,7 +639,7 @@ def voice_assistant():
                     
                 
 
-                elif "email to avinash" in query:
+                elif "ema to avinash" in query:
                
                     speak("sir what should i say")
                     query = take_command().lower()
