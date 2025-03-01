@@ -147,8 +147,8 @@ def amazon_product_2(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
     pyautogui.click(button='left')
 
-    button_x = 467
-    button_y = 748
+    button_x = 507
+    button_y = 873
 
     pyautogui.moveTo(button_x, button_y)
 
@@ -157,8 +157,8 @@ def add_cart_filpkart(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
     pyautogui.click(button='left')
 
-    button_x = 342
-    button_y = 835
+    button_x = 331
+    button_y = 887
 
     pyautogui.moveTo(button_x, button_y)
 
@@ -175,8 +175,8 @@ def flipkart_product_2(button_x, button_y):
     pyautogui.moveTo(button_x, button_y)
     pyautogui.click(button='left')
 
-    button_x = 525
-    button_y = 824
+    button_x = 507
+    button_y = 873
 
     pyautogui.moveTo(button_x, button_y)
     
@@ -364,8 +364,8 @@ def voice_assistant():
                     speak("opening first product from your search result")
 
                 elif "second product" in query:
-                    button_x = 467
-                    button_y = 748
+                    button_x = 507
+                    button_y = 873
                     amazon_product_2(button_x, button_y)
                     speak("opening second product from your search result")
 
@@ -390,8 +390,8 @@ def voice_assistant():
                     webbrowser.open(web)
                     speak("Done, Sir")
             
-                elif "open flipkart cart" in query:
-                    speak("opening your amazon cart") 
+                elif "open cart" in query:
+                    speak("opening your flipkart cart") 
                     query = query.replace("open flipkart cart","")
                     query = query.replace("filpkart","")
                     query = query.replace("float","")
@@ -406,8 +406,8 @@ def voice_assistant():
                     speak("Done, Sir")                
 
                 elif "add this to my cart" in query:
-                    button_x = 342
-                    button_y = 835
+                    button_x = 331
+                    button_y = 887
                     add_cart_filpkart(button_x, button_y)
                     speak("added this product to your flipkart cart")
 
@@ -418,8 +418,8 @@ def voice_assistant():
                     speak("opening first product from your search result")
 
                 elif "second product" in query:
-                    button_x = 525
-                    button_y = 824
+                    button_x = 507
+                    button_y = 873
                     flipkart_product_2(button_x, button_y)
                     speak("opening second product from your search result")
 
